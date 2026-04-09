@@ -1,4 +1,6 @@
 import { useCats } from '../../hooks/useCats';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+
 import { CatGrid } from '../CatGrid/CatGrid';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 
@@ -17,6 +19,8 @@ export const CatContent = ({ activeTab }: CatContentProps) => {
   const favoriteCats: Cat[] = [];
   const isFavorites = activeTab === 'favorites';
 
+  const observerRef = useIntersectionObserver(loadMore, (!loading && !isFavorites));
+
   if (error && !isFavorites) {
     return <ErrorMessage message={error} onRetry={loadMore} />;
   }
@@ -25,14 +29,13 @@ export const CatContent = ({ activeTab }: CatContentProps) => {
     <div>
       <CatGrid
         cats={isFavorites ? favoriteCats : cats}
-        isLoading={loading} />
+        isLoading={loading} 
+      />
 
-      {loading && (
-        <p className={styles.loader}>... загружаем еще котиков ...</p>
-      )}
-
-      {activeTab === 'all' && !loading && (
-        <button onClick={loadMore}> еще </button>
+      {!isFavorites && (
+        <div ref={observerRef} className={styles.observerTrigger}>
+          {loading && <p className={styles.loader}>... загружаем еще котиков ...</p>}
+        </div>
       )}
     </div>
   );
