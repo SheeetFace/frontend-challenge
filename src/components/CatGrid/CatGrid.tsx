@@ -1,4 +1,5 @@
 import { CatCard } from '../CatCard/CatCard';
+import { StatusState } from '../StatusState/StatusState';
 
 import type { Cat } from '../../types/cats';
 
@@ -11,8 +12,8 @@ interface CatGridProps {
 
 export const CatGrid = ({ cats, isLoading }: CatGridProps) => {
 
-  if (cats.length === 0 && !isLoading ) {
-    return <span className={styles.empty}>Котиков пока нет...</span>;
+  if (cats.length === 0 && !isLoading) {
+    return <StatusState message="Любимых котиков пока нет..." icon='😿' />
   }
 
   return (

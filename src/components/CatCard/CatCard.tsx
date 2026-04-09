@@ -1,25 +1,33 @@
+import { useState } from 'react';
+
+import { useCatsContext } from '../../context/CatContext';
+
 import { HeartFilled } from '../Icons/HeartFilled';
 import { HeartOutline } from '../Icons/HeartOutline';
 
 import styles from './CatCard.module.css';
 
 import type { Cat } from '../../types/cats';
-import { useState } from 'react';
 
 interface CatCardProps {
   cat: Cat;
-  isFavorite?: boolean;
 }
 
-export const CatCard = ({ cat, isFavorite = false }: CatCardProps) => {
+export const CatCard = ({ cat }: CatCardProps) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  const { toggleFavorite, isFavorite } = useCatsContext();
+
+  const active = isFavorite(cat.id);
+
+  const handleClick = (cat: Cat) => toggleFavorite(cat);
 
   return (
     <article
       className={`
         ${styles.card} 
-        ${!isImageLoaded ? styles.pulsing : ''} 
-        ${isFavorite ? styles.isFavorite : ''}
+        ${!isImageLoaded ? styles.pulsing : ''}
+        ${active ? styles.isFavorite : ''}
       `}
     >
       <img
@@ -35,11 +43,19 @@ export const CatCard = ({ cat, isFavorite = false }: CatCardProps) => {
       <button
         className={styles.favoriteButton}
         type="button"
-        aria-label={isFavorite ? "Убрать из любимых" : "Добавить в любимые"}
-        onClick={() => console.log(`Котик ${cat.id}`)}
+        aria-label={active ? "Убрать из любимых" : "Добавить в любимые"}
+        onClick={() => handleClick(cat)}
       >
-        {isFavorite ? <HeartFilled /> : <HeartOutline />}
+
+        <div className={styles.heartOutline}>
+          <HeartOutline />
+        </div>
+        <div className={styles.heartFilled}>
+          <HeartFilled />
+        </div>
+
       </button>
+      
     </article>
   );
 };

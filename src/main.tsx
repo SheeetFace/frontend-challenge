@@ -1,7 +1,13 @@
 import { createRoot } from 'react-dom/client'
-import './index.css'
+
+import { CatProvider } from './context/CatContext.tsx'
+
 import App from './App.tsx'
 
+import './index.css'
+
 createRoot(document.getElementById('root')!).render(
-    <App />
+    <CatProvider>
+        <App />
+    </CatProvider>
 )
