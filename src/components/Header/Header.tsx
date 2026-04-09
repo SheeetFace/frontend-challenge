@@ -1,6 +1,6 @@
 import styles from './Header.module.css';
 
-import type { TabType, ITab } from '../types/tabs';
+import type { TabType, ITab } from '../../types/tabs';
 
 interface HeaderProps {
     activeTab: TabType;

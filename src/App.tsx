@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 import { Header } from './components/Header/Header';
+import { CatContent } from './components/CatContent/CatContent';
 
 import styles from "./App.module.css";
 
-import type { TabType } from './components/types/tabs';
+import type { TabType } from './types/tabs';
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabType>('all');
@@ -14,11 +15,7 @@ function App() {
       <Header activeTab={activeTab} onTabChange={setActiveTab} />
 
       <main className={styles.main}>
-        {activeTab === 'all' ? (
-          <span>список всех котиков</span>
-        ) : (
-          <span>любимые котики</span>
-        )}
+        <CatContent activeTab={activeTab} />
       </main>
     </div>
   )

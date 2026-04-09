@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #2196f3;
+  --primary-hover: #1e88e5;
+  --accent-color: #f24e1e;
+  --text-white: #ffffff;
+  --text-white-muted: rgba(255, 255, 255, 0.7);
+  --shadow-light: 0px 4px 4px rgba(0, 0, 0, 0.24);
+}
+
 body {
   margin: 0;
   padding: 0;
