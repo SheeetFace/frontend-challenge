@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 16px;
+    text-align: center;
+}
+
+.text {
+    color: var(--accent-color);
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.retryBtn {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    transition: background-color 0.2s ease, transform 0.1s active;
+    box-shadow: var(--shadow-light);
+}
+
+.retryBtn:hover {
+    background-color: var(--primary-hover);
+}
+
+.retryBtn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
