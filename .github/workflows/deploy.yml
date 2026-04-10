@@ -26,6 +26,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_CAT_API_KEY: ${{ secrets.VITE_CAT_API_KEY }}
+          VITE_CAT_API_URL: ${{ secrets.VITE_CAT_API_URL }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
