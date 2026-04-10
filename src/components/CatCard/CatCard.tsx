@@ -14,9 +14,9 @@ interface CatCardProps {
 }
 
 export const CatCard = ({ cat }: CatCardProps) => {
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-
   const { toggleFavorite, isFavorite } = useCatsContext();
+
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const active = isFavorite(cat.id);
 
